@@ -21,7 +21,7 @@ class Payload(BaseModel):
     text: str
 
 
-@app.post("/")
+@app.post("/gtts-blackbox")
 async def root(prompt: Payload):
     return Response(content=processing(prompt.text).read(), media_type="audio/mp3", headers={"Content-Disposition": "attachment; filename=audio.mp3"})
 
