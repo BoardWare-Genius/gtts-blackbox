@@ -1,6 +1,7 @@
 name: Build container
 env:
-  VERSION: 0.0.1
+  VERSION: 0.0.2
+  IMAGE_NAME: "gtts-blackbox"
 on:
   push:
     branches:
@@ -25,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/gtts-blackbox:${{ env.VERSION }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
