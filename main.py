@@ -23,7 +23,10 @@ class Payload(BaseModel):
 
 @app.post("/gtts-blackbox")
 async def root(prompt: Payload):
-    return Response(content=processing(prompt.text).read(), media_type="audio/mp3", headers={"Content-Disposition": "attachment; filename=audio.mp3"})
+    try:
+        return Response(content=processing(prompt.text).read(), media_type="audio/mp3", headers={"Content-Disposition": "attachment; filename=audio.mp3"})
+    except Exception as e:
+        return Response(content=str(e), media_type="text/plain", status_code=500)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)
