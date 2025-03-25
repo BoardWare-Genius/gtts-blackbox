@@ -1,7 +1,7 @@
 name: Build container
 env:
   VERSION: 0.0.3
-  IMAGE_NAME: "gtts-blackbox"
+  IMAGE_NAME: "test"
 on:
   push:
     branches:
