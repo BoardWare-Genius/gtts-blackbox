@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          tags: ${{ secrets.DOCKER_NAME }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
