@@ -20,9 +20,22 @@ app = FastAPI()
 class Payload(BaseModel):
     text: str
 
+@app.post("/")
+async def root(prompt: Payload):
+    try:
+        return Response(content=processing(prompt.text).read(), media_type="audio/mp3", headers={"Content-Disposition": "attachment; filename=audio.mp3"})
+    except Exception as e:
+        return Response(content=str(e), media_type="text/plain", status_code=500)
+        
+@app.post("/{x}")
+async def root_w(prompt: Payload):
+    try:
+        return Response(content=processing(prompt.text).read(), media_type="audio/mp3", headers={"Content-Disposition": "attachment; filename=audio.mp3"})
+    except Exception as e:
+        return Response(content=str(e), media_type="text/plain", status_code=500)
 
 @app.post("/gtts-blackbox")
-async def root(prompt: Payload):
+async def gtts_blackbox(prompt: Payload):
     try:
         return Response(content=processing(prompt.text).read(), media_type="audio/mp3", headers={"Content-Disposition": "attachment; filename=audio.mp3"})
     except Exception as e:
